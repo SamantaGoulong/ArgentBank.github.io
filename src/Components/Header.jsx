@@ -7,8 +7,8 @@ function Header() {
         <>
             <nav className="nav-container">
                 <img src={argentBankLogo} alt="logo" />
-                <Link to="/"className={`link-nav-sign-in`}>
-                    <i class="fa fa-user-circle"></i>
+                <Link to="/" className={`link-nav-sign-in`}>
+                    <i className="fa fa-user-circle"></i>
                     Sign In
                 </Link>
             </nav>

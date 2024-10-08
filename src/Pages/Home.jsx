@@ -1,5 +1,5 @@
 import '../Sass/Home.scss'
-
+import Down from '../Components/Down'
 
 function Home() {
     return (
@@ -11,9 +11,8 @@ function Home() {
                 </section>
 
                 <section className="down-container">
-                    <div className="down-content">
-                        {/* <img src={argentBankLogo} alt="logo" /> */}
-                    </div>
+                    
+                   <Down/>
                 </section>
             </div>
         </>
