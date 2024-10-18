@@ -1,0 +1,29 @@
+.user-container {
+    width: 100%;
+    height: 650px;
+    padding-top: 30px;
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-color: #12002b;
+    color: white;
+    .user-content {
+        width: 80%;
+
+        .user-content-text {
+            color: white;
+            font-size: 2.5rem;
+            .user-title {
+                font-weight: bolder;
+            }
+        }
+        .user-content-cards {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+    }
+}
