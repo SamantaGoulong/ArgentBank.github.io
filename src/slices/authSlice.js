@@ -57,33 +57,65 @@ export const fetchUserData = createAsyncThunk('auth/fetchUserData', async (_, th
     }
 })
 
-// Action pour récupérer les informations utilisateur au chargement de la page
-export const fetchUserInfo = createAsyncThunk('auth/fetchUserInfo', async (_, thunkAPI) => {
-    const token = localStorage.getItem('token') // On récupère le token stocké
-    if (!token) return thunkAPI.rejectWithValue('Token non trouvé') // Si aucun token, on renvoie une erreur
+//action pour mettre a jour le user name
+export const fetchUpdateUserName = createAsyncThunk(
+    'auth/fetchUpdateUserName',
+    async (newUserName, thunkAPI) => {
+        const token = localStorage.getItem('token') // On récupère le token stocké
 
-    try {
-        // On effectue une requête GET pour récupérer le profil utilisateur
-        const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}` // On ajoute le token dans les en-têtes
+        try {
+            // On effectue une requête PUT pour mettre a jour le user name
+            const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}` // On ajoute le token dans les en-têtes pour l'authentification
+                },
+                body: JSON.stringify({ userName: newUserName })
+            })
+
+            const data = await response.json() // On récupère la réponse en JSON
+            if (response.ok) {
+                return data.body // Si la requête réussit, on retourne les données utilisateur
+            } else {
+                // Si la requête échoue, on renvoie le message d'erreur
+                return thunkAPI.rejectWithValue(
+                    data.message || 'Erreur lors de la récupération des données utilisateur'
+                )
             }
-        })
-
-        const data = await response.json() // On récupère la réponse en JSON
-        if (response.ok) {
-            return data.body // Renvoie les infos utilisateur si la requête réussit
-        } else {
-            // Si la requête échoue, on renvoie le message d'erreur
-            return thunkAPI.rejectWithValue(data.message || 'Erreur de récupération')
+        } catch (error) {
+            // Gestion des erreurs de réseau
+            return thunkAPI.rejectWithValue('Erreur réseau')
         }
-    } catch (error) {
-        // Gestion des erreurs de réseau
-        return thunkAPI.rejectWithValue('Erreur réseau')
     }
-})
+)
+// Action pour récupérer les informations utilisateur au chargement de la page
+// export const fetchUserInfo = createAsyncThunk('auth/fetchUserInfo', async (_, thunkAPI) => {
+//     const token = localStorage.getItem('token') // On récupère le token stocké
+//     if (!token) return thunkAPI.rejectWithValue('Token non trouvé') // Si aucun token, on renvoie une erreur
+
+//     try {
+//         // On effectue une requête GET pour récupérer le profil utilisateur
+//         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 Authorization: `Bearer ${token}` // On ajoute le token dans les en-têtes
+//             }
+//         })
+
+//         const data = await response.json() // On récupère la réponse en JSON
+//         if (response.ok) {
+//             return data.body // Renvoie les infos utilisateur si la requête réussit
+//         } else {
+//             // Si la requête échoue, on renvoie le message d'erreur
+//             return thunkAPI.rejectWithValue(data.message || 'Erreur de récupération')
+//         }
+//     } catch (error) {
+//         // Gestion des erreurs de réseau
+//         return thunkAPI.rejectWithValue('Erreur réseau')
+//     }
+// })
 
 // Création du slice d'authentification avec Redux Toolkit
 const authSlice = createSlice({
@@ -124,14 +156,20 @@ const authSlice = createSlice({
             .addCase(fetchUserData.rejected, (state, action) => {
                 state.error = action.payload // Stocke le message d'erreur
             })
-            .addCase(fetchUserInfo.fulfilled, (state, action) => {
-                state.userInfo = action.payload // Met à jour les informations utilisateur
-                state.status = 'succeeded' // Indique que la récupération des données a réussi
+            .addCase(fetchUpdateUserName.fulfilled, (state, action) => { // succès
+                state.userInfo = action.payload // Stocke les informations utilisateur dans l’état
             })
-            .addCase(fetchUserInfo.rejected, (state) => {
-                state.userInfo = null // Réinitialise userInfo en cas d'échec
-                state.status = 'failed' // Indique que la récupération des données a échoué
+            .addCase(fetchUpdateUserName.rejected, (state, action) => { // echec
+                state.error = action.payload // Stocke le message d'erreur
             })
+            // .addCase(fetchUserInfo.fulfilled, (state, action) => {
+            //     state.userInfo = action.payload // Met à jour les informations utilisateur
+            //     state.status = 'succeeded' // Indique que la récupération des données a réussi
+            // })
+            // .addCase(fetchUserInfo.rejected, (state) => {
+            //     state.userInfo = null // Réinitialise userInfo en cas d'échec
+            //     state.status = 'failed' // Indique que la récupération des données a échoué
+            // })
     }
 })
 

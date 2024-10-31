@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom' // Importation de Link et u
 import argentBankLogo from '../assets/Images/argentBankLogo.webp' // Importation du logo de l'application
 import '../Sass/Header.scss' // Importation des styles spécifiques pour l'en-tête
 import { useSelector, useDispatch } from 'react-redux' // Importation des hooks Redux pour accéder au store
-import { logout, fetchUserInfo } from '../slices/authSlice' // Importation des actions Redux pour déconnexion et récupération des infos utilisateur
+import { logout, fetchUserData } from '../slices/authSlice' // Importation des actions Redux pour déconnexion et récupération des infos utilisateur
 
 function Header() {
     const dispatch = useDispatch() // Initialise useDispatch pour déclencher les actions Redux
@@ -14,12 +14,13 @@ function Header() {
         token: state.auth.token, // Récupère le token d'authentification
         userInfo: state.auth.userInfo // Récupère les informations utilisateur
     }))
+    
 
     // Effet pour récupérer les informations utilisateur si un token est présent mais pas encore d'infos utilisateur
     useEffect(() => {
         if (token && !userInfo) {
             // Vérifie si le token existe et si les infos utilisateur ne sont pas encore chargées
-            dispatch(fetchUserInfo()) // Déclenche l'action pour récupérer les infos utilisateur
+            dispatch(fetchUserData()) // Déclenche l'action pour récupérer les infos utilisateur
         }
     }, [token, userInfo, dispatch]) // Dépend des états token et userInfo
 
@@ -48,7 +49,7 @@ function Header() {
                             {' '}
                             {/* Span pour déclencher la déconnexion */}
                             <i className="fa fa-user-circle"></i> {/* Icône utilisateur */}
-                            {userInfo?.firstName || 'User'}{' '}
+                            {userInfo?.userName || 'User'}{' '}
                             {/* Affiche le prénom de l'utilisateur ou 'User' par défaut */}
                             <i className="fa fa-sign-out"></i> Sign Out{' '}
                             {/* Icône de déconnexion et texte */}

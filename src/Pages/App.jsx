@@ -5,6 +5,7 @@ import Home from '../Pages/Home'
 import Footer from '../Components/Footer'
 import SignIn from '../Pages/SignIn'
 import User from '../Pages/User'
+import PrivateRoute from '../Components/PrivateRoute'; // Importation du composant de route protégée
 
 function App() {
   return (
@@ -14,9 +15,17 @@ function App() {
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/signIn" element={<SignIn />} />
-                  <Route path="/user" element={<User />} />
-              </Routes>
-              <Footer />
+                  <Route
+                      path="/user"
+                      element={
+                          <PrivateRoute>
+                              <User />{' '}
+                              {/* Page utilisateur accessible uniquement aux utilisateurs authentifiés */}
+                          </PrivateRoute>
+                      }
+                  />
+             </Routes>
+              <Footer /> 
           </Router>
       </>
   )
