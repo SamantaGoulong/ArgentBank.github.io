@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux' // Importation des hooks 
 import { fetchUpdateUserName } from '../slices/authSlice'; // Assurez-vous que le chemin est correct
 
 import '../Sass/EditNameModal.scss' // Assurez-vous que ce chemin est correct
+import GreenButton from './GreenButton';
 
 function EditNameModal({ isOpen, onClose, onSave, initialFirstName, initialUserName }) {
     
@@ -26,16 +27,16 @@ const { token, userInfo } = useSelector((state) => ({
     return (
         <div className="modal-overlay">
             <div className="modal-content">
-                <p onClick={onClose}>X</p>
-                <h2>Edit Name</h2>
+                <p className="btn-close" onClick={onClose}>
+                    X
+                </p>
                 <form onSubmit={handleSubmit}>
-                    
-                    <div>
-                        <label htmlFor="user-name">Initial Username</label>
+                    <div className="title">
+                        <p>Hello</p>
                         <p>{userInfo?.userName || 'User'}</p>
                     </div>
 
-                    <div>
+                    <div className="new">
                         <label htmlFor="user-name">New Username</label>
                         <input
                             type="text"
@@ -46,10 +47,8 @@ const { token, userInfo } = useSelector((state) => ({
                         />
                     </div>
                     <div className="modal-buttons">
-                        <button type="submit">Save</button>
-                        <button type="button" onClick={onClose}>
-                            Cancel
-                        </button>
+                        <GreenButton texte="Save" />
+                        <GreenButton texte="Cancel" onClick={onClose} />
                     </div>
                 </form>
             </div>

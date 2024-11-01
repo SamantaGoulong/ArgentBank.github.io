@@ -14,7 +14,6 @@ function Header() {
         token: state.auth.token, // Récupère le token d'authentification
         userInfo: state.auth.userInfo // Récupère les informations utilisateur
     }))
-    
 
     // Effet pour récupérer les informations utilisateur si un token est présent mais pas encore d'infos utilisateur
     useEffect(() => {
@@ -32,26 +31,16 @@ function Header() {
 
     return (
         <nav className="nav-container">
-            {' '}
-            {/* Conteneur de la barre de navigation */}
             <Link to="/" className="link-nav-logo">
-                {' '}
-                {/* Lien vers la page d'accueil avec le logo */}
-                <img src={argentBankLogo} alt="Argent Bank logo" className="link-nav-img" />{' '}
-                {/* Logo de l'application */}
+                <img src={argentBankLogo} alt="Argent Bank logo" className="link-nav-img" />
             </Link>
             <div className="nav-links">
-                {' '}
-                {/* Conteneur pour les liens de navigation */}
                 {token ? ( // Vérifie si le token est présent pour afficher l'option de déconnexion
                     <div className="SignOut">
                         <span onClick={handleSignOut} className="link-nav-sign-out">
-                            {' '}
-                            {/* Span pour déclencher la déconnexion */}
-                            <i className="fa fa-user-circle"></i> {/* Icône utilisateur */}
-                            {userInfo?.userName || 'User'}{' '}
-                            {/* Affiche le prénom de l'utilisateur ou 'User' par défaut */}
-                            <i className="fa fa-sign-out"></i> Sign Out{' '}
+                            <i className="fa fa-user-circle"></i>
+                            {userInfo?.userName || 'User'}
+                            <i className="fa fa-sign-out"></i> Sign Out
                             {/* Icône de déconnexion et texte */}
                         </span>
                     </div>
@@ -59,10 +48,7 @@ function Header() {
                     // Si le token n'est pas présent, afficher le lien de connexion
                     <div className="SignIn">
                         <Link to="/SignIn" className="link-nav-sign-in">
-                            {' '}
-                            {/* Lien vers la page de connexion */}
-                            <i className="fa fa-user-circle"></i> Sign In{' '}
-                            {/* Icône utilisateur et texte de connexion */}
+                            <i className="fa fa-user-circle"></i> Sign In
                         </Link>
                     </div>
                 )}

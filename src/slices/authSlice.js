@@ -89,35 +89,7 @@ export const fetchUpdateUserName = createAsyncThunk(
         }
     }
 )
-// Action pour récupérer les informations utilisateur au chargement de la page
-// export const fetchUserInfo = createAsyncThunk('auth/fetchUserInfo', async (_, thunkAPI) => {
-//     const token = localStorage.getItem('token') // On récupère le token stocké
-//     if (!token) return thunkAPI.rejectWithValue('Token non trouvé') // Si aucun token, on renvoie une erreur
 
-//     try {
-//         // On effectue une requête GET pour récupérer le profil utilisateur
-//         const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 Authorization: `Bearer ${token}` // On ajoute le token dans les en-têtes
-//             }
-//         })
-
-//         const data = await response.json() // On récupère la réponse en JSON
-//         if (response.ok) {
-//             return data.body // Renvoie les infos utilisateur si la requête réussit
-//         } else {
-//             // Si la requête échoue, on renvoie le message d'erreur
-//             return thunkAPI.rejectWithValue(data.message || 'Erreur de récupération')
-//         }
-//     } catch (error) {
-//         // Gestion des erreurs de réseau
-//         return thunkAPI.rejectWithValue('Erreur réseau')
-//     }
-// })
-
-// Création du slice d'authentification avec Redux Toolkit
 const authSlice = createSlice({
     name: 'auth', // Nom du slice
     initialState: {

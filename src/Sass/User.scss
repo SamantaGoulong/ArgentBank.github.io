@@ -8,22 +8,29 @@
     text-align: center;
     background-color: #12002b;
     color: white;
+    @media (min-width: 320px) and (max-width: 767px) {
+        height: 800px;
+        padding-bottom: 40px;
+    }
     .user-content {
         width: 80%;
 
         .user-content-text {
             color: white;
             font-size: 2.5rem;
+            @media (min-width: 320px) and (max-width: 767px) {
+                font-size: 2rem;
+            }
             .user-title {
                 font-weight: bolder;
             }
+            
         }
         .user-content-cards {
             width: 100%;
             display: flex;
             justify-content: center;
             flex-direction: column;
-            
         }
     }
 }

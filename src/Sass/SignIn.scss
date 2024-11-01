@@ -5,7 +5,9 @@
     padding-top: 50px;
     display: flex;
     justify-content: center;
-
+@media (min-width: 320px) and (max-width: 767px) {
+         height: 570px;  
+        }
     .signIn-content {
         width: 220px;
         height: 280px;
