@@ -1,15 +1,15 @@
-import '../Sass/User.scss'; // Importation des styles spécifiques pour le composant User
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import GreenButton from '../Components/GreenButton';
-import UserCard from '../Components/UserCard';
-import EditNameModal from '../Components/EditNameModal';
+import '../Sass/User.scss'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import GreenButton from '../Components/GreenButton'
+import UserCard from '../Components/UserCard'
+import EditNameModal from '../Components/EditNameModal'
 
 function User() {
-    const userInfo = useSelector((state) => state.auth.userInfo);
-    const [isModalOpen, setIsModalOpen] = useState(false); // État pour ouvrir/fermer la modal
+    const userInfo = useSelector((state) => state.auth.userInfo)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
-    if (!userInfo) return <p>Loading user information...</p>; // Affiche un message si les infos utilisateur ne sont pas encore chargées
+    if (!userInfo) return <p>Loading user information...</p>
 
     const handleSave = (userName) => {
         console.log(`New Name: ${userName}`)
@@ -43,16 +43,15 @@ function User() {
                     />
                 </div>
             </div>
-            {/* Intégration de la modal pour éditer le nom */}
+
             <EditNameModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSave={handleSave}
                 initialUserName={userInfo.userName}
-                // initialLastName={userInfo.lastName}
             />
         </div>
     )
 }
 
-export default User;
+export default User

@@ -1,26 +1,21 @@
-// EditNameModal.js
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux' // Importation des hooks Redux pour accéder au store
-import { fetchUpdateUserName } from '../slices/authSlice'; // Assurez-vous que le chemin est correct
+import { useSelector, useDispatch } from 'react-redux' 
+import { fetchUpdateUserName } from '../slices/authSlice'; 
 
-import '../Sass/EditNameModal.scss' // Assurez-vous que ce chemin est correct
+import '../Sass/EditNameModal.scss' 
 import GreenButton from './GreenButton';
 
-function EditNameModal({ isOpen, onClose, onSave, initialFirstName, initialUserName }) {
+function EditNameModal({ isOpen, onClose, initialUserName }) {
     
     const [userName, setUserName] = useState(initialUserName)
      const dispatch = useDispatch()
-const { token, userInfo } = useSelector((state) => ({
-    token: state.auth.token, // Récupère le token d'authentification
-    userInfo: state.auth.userInfo // Récupère les informations utilisateur
-}))
+
     // Ne rien afficher si la modal n'est pas ouverte
     if (!isOpen) return null
 
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(fetchUpdateUserName(userName))
-        // onSave(userName) // Appelle la fonction de sauvegarde
         onClose() // Ferme la modal
     }
 
@@ -32,8 +27,7 @@ const { token, userInfo } = useSelector((state) => ({
                 </p>
                 <form onSubmit={handleSubmit}>
                     <div className="title">
-                        <p>Hello</p>
-                        <p>{userInfo?.userName || 'User'}</p>
+                        <p>Edit user info</p>
                     </div>
 
                     <div className="new">
