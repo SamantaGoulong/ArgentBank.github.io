@@ -2,7 +2,8 @@ import '../Sass/SignIn.scss'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser, fetchUserData } from '../slices/authSlice'
+import { loginUser , fetchUserData } from '../slices/authActions'
+
 
 function SignIn() {
     // Initialise les états locaux pour le formulaire de connexion

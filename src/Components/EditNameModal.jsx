@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux' 
-import { fetchUpdateUserName } from '../slices/authSlice'; 
+import { fetchUpdateUserName } from '../slices/authActions'; 
 
 import '../Sass/EditNameModal.scss' 
 import GreenButton from './GreenButton';

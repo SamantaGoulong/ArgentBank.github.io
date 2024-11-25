@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import argentBankLogo from '../assets/Images/argentBankLogo.webp'
 import '../Sass/Header.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout, fetchUserData } from '../slices/authSlice'
+import { fetchUserData } from '../slices/authActions'
+import { logout} from '../slices/authSlice'
 function Header() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
