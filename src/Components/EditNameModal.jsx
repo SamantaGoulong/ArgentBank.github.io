@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux' 
-import { fetchUpdateUserName } from '../slices/authActions'; 
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchUpdateUserName } from '../slices/authActions'
 
-import '../Sass/EditNameModal.scss' 
-import GreenButton from './GreenButton';
+import '../Sass/EditNameModal.scss'
+import GreenButton from './GreenButton'
 
 function EditNameModal({ isOpen, onClose, initialUserName }) {
-    
+    const userInfo = useSelector((state) => state.auth.userInfo)
     const [userName, setUserName] = useState(initialUserName)
-     const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     // Ne rien afficher si la modal n'est pas ouverte
     if (!isOpen) return null
@@ -20,8 +20,8 @@ function EditNameModal({ isOpen, onClose, initialUserName }) {
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <p className="btn-close" onClick={onClose}>
                     X
                 </p>
@@ -31,7 +31,7 @@ function EditNameModal({ isOpen, onClose, initialUserName }) {
                     </div>
 
                     <div className="new">
-                        <label htmlFor="user-name">New Username</label>
+                        <label htmlFor="user-name">User Name</label>
                         <input
                             type="text"
                             id="user-name"
@@ -40,9 +40,30 @@ function EditNameModal({ isOpen, onClose, initialUserName }) {
                             required
                         />
                     </div>
+                    <div className="new">
+                        <label htmlFor="user-name">First Name</label>
+                        <input
+                            type="text"
+                            id="user-name"
+                            value={userInfo.firstName}
+                            required
+                            disabled
+                        />
+                    </div>
+                    <div className="new">
+                        <label htmlFor="user-name">Last Name</label>
+                        <input
+                            type="text"
+                            id="user-name"
+                            value={userInfo.lastName}
+                            required
+                            disabled
+                        />
+                    </div>
+
                     <div className="modal-buttons">
                         <GreenButton texte="Save" />
-                        <GreenButton texte="Cancel" onClick={onClose} />
+                        <GreenButton texte="Cancel" onClick={onClose}/>
                     </div>
                 </form>
             </div>

@@ -13,50 +13,64 @@
             padding-left: 5px;
         }
     }
-    .SignOut {
-        cursor: pointer;
-        &:hover {
-            text-decoration: underline;
+    .nav-links {
+        
+        .SignOut {
+            //  background-color: #2748dd;
+             display: flex;
+       cursor: pointer;
+         
+            // &:hover {
+            //     text-decoration: underline;
+            // }
+            @media (min-width: 320px) and (max-width: 768px) {
+                width: 150px;
+            }
+            a {
+                color: #2c3e50;
+                text-decoration: none;
+                font-weight: bolder;
+                &:hover {
+                text-decoration: underline;
+            }
+            }
+            .link-nav-sign-out {
+                font-size: 1rem;
+                margin-right: 70px;
+                text-decoration: none;
+                font-weight: bolder;
+                color: #2c3e50;
+                display: flex;
+                &:hover {
+                    text-decoration: underline;
+                }
+                .fa-user-circle {
+                    margin-right: 5px;
+                }
+                .fa-sign-out {
+                    margin-left: 15px;
+                    margin-right: 5px;
+                }
+            }
         }
-        @media (min-width: 320px) and (max-width: 768px) {
-            width: 150px;
-        }
-        .link-nav-sign-out {
-            font-size: 1rem;
-            margin-right: 70px;
-            text-decoration: none;
-            font-weight: bolder;
-            color: #2c3e50;
+        .SignIn {
             display: flex;
+            justify-content: flex-end;
             &:hover {
                 text-decoration: underline;
             }
-            .fa-user-circle {
-                margin-right: 5px;
-            }
-            .fa-sign-out {
-                margin-left: 15px;
-                margin-right: 5px;
-            }
-        }
-    }
-    .SignIn {
-        display: flex;
-        justify-content: flex-end;
-        &:hover {
-            text-decoration: underline;
-        }
 
-        .link-nav-sign-in {
-            display: flex;
-            font-size: 1rem;
-            margin-right: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            color: #2c3e50;
+            .link-nav-sign-in {
+                display: flex;
+                font-size: 1rem;
+                margin-right: 30px;
+                text-decoration: none;
+                font-weight: bold;
+                color: #2c3e50;
 
-            .fa-user-circle {
-                margin-right: 5px;
+                .fa-user-circle {
+                    margin-right: 5px;
+                }
             }
         }
     }

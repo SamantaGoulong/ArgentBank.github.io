@@ -4,7 +4,7 @@ import argentBankLogo from '../assets/Images/argentBankLogo.webp'
 import '../Sass/Header.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchUserData } from '../slices/authActions'
-import { logout} from '../slices/authSlice'
+import { logout } from '../slices/authSlice'
 function Header() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -35,9 +35,11 @@ function Header() {
             <div className="nav-links">
                 {token ? ( // Vérifie si le token est présent pour afficher l'option de déconnexion
                     <div className="SignOut">
-                        <span onClick={handleSignOut} className="link-nav-sign-out">
+                        <Link to="/User" className="link-nav-sign-in">
                             <i className="fa fa-user-circle"></i>
                             {userInfo?.userName || 'User'}
+                        </Link>
+                        <span onClick={handleSignOut} className="link-nav-sign-out">
                             <i className="fa fa-sign-out"></i> Sign Out
                         </span>
                     </div>
